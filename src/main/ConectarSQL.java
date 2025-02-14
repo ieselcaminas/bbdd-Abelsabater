@@ -39,10 +39,15 @@ public class ConectarSQL {
     }
     public static void inseruserPreparedStatement() throws SQLException {
         PreparedStatement st = null;
-        String sql="INSERT INTO usuarios (nombre, apellidos) VALUES(? ?)";
+        String sql="INSERT INTO usuarios (nombre, apellidos) VALUES(?,?)";
         st=connection.prepareStatement(sql);
-        st.setString(1,"Juan");
-        st.setString(2,"Andreu");
+        st.setString(1,"Jua");
+        st.setString(2,"Alberto");
         st.executeUpdate();
+    }
+    public static void deleteuser() throws SQLException {
+        Statement st = connection.createStatement();
+        st.executeUpdate("DELETE FROM usuarios");
+
     }
 }
