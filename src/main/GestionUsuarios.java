@@ -37,10 +37,14 @@ public class GestionUsuarios {
         java.sql.Connection con = Main.connection;
         Scanner sc=new Scanner(System.in);
         System.out.println("Ingrese su usuario");
-        String nombre=sc.nextLine();
+        String usuari=sc.nextLine();
         System.out.println("Ingrese su password");
-        String contrasenya=sc.nextLine();
+        String passw=sc.nextLine();
         Statement st = con.createStatement();
-        st.executeUpdate("INSERT INTO usuarios(nombre, contrasenya) VALUES (nombre, contrasenya) ");
+        String sql="INSERT INTO usuarios(nombre, contrasenya) VALUES (?, ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, usuari);
+        pst.setString(2, passw);
+        pst.executeUpdate();
     }
 }
