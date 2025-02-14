@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,7 +22,12 @@ public class ConectarSQL {
     public static void main(String[] args) throws SQLException {
         java.sql.Connection j = getConnection();
         Statement STM=  j.createStatement();
-        STM.executeUpdate("CREATE TABLE  T1 (c1 VARCHAR(20))");
+        ResultSet rs = STM.executeQuery("SELECT * FROM T1");
+        while (rs.next()) {
+            System.out.println(rs.getString(1));
+            System.out.println("\t" + rs.getString(2));
+            System.out.println("\t" + rs.getString(3));
+        }
         STM.close();
     }
 }
