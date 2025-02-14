@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,14 +21,28 @@ public class ConectarSQL {
     }
 
     public static void main(String[] args) throws SQLException {
-        java.sql.Connection j = getConnection();
-        Statement STM=  j.createStatement();
+        java.sql.Connection con = getConnection();
+        Statement STM=  con.createStatement();
         ResultSet rs = STM.executeQuery("SELECT * FROM usuarios");
+        inseruser();
+        inseruserPreparedStatement();
         while (rs.next()) {
             System.out.println(rs.getString(1));
             System.out.println("\t" + rs.getString(2));
             System.out.println("\t" + rs.getString(3));
         }
         STM.close();
+    }
+    public static void inseruser() throws SQLException {
+        Statement st = connection.createStatement();
+        st.executeUpdate("INSERT INTO usuarios (nombre, apellidos) VALUES('Juan','Espinosa')");
+    }
+    public static void inseruserPreparedStatement() throws SQLException {
+        PreparedStatement st = null;
+        String sql="INSERT INTO usuarios (nombre, apellidos) VALUES(? ?)";
+        st=connection.prepareStatement(sql);
+        st.setString(1,"Juan");
+        st.setString(2,"Andreu");
+        st.executeUpdate();
     }
 }
