@@ -27,7 +27,7 @@ public class GestionUsuarios {
         String usuario=sc.nextLine();
         System.out.println("Ingrese su password");
         String password=sc.nextLine();
-        PreparedStatement st=con.prepareStatement("select * from usuarios where usuario=? and password=?");
+        PreparedStatement st=con.prepareStatement("select * from usuarios where nombre=? and contrasenya=?");
         st.setString(1, usuario);
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
