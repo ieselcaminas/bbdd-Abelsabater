@@ -22,7 +22,7 @@ public class ConectarSQL {
     public static void main(String[] args) throws SQLException {
         java.sql.Connection j = getConnection();
         Statement STM=  j.createStatement();
-        ResultSet rs = STM.executeQuery("SELECT * FROM T1");
+        ResultSet rs = STM.executeQuery("SELECT * FROM usuarios");
         while (rs.next()) {
             System.out.println(rs.getString(1));
             System.out.println("\t" + rs.getString(2));
