@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConectarSQL {
 
@@ -17,8 +18,10 @@ public class ConectarSQL {
         return connection;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         java.sql.Connection j = getConnection();
-
+        Statement STM=  j.createStatement();
+        STM.executeUpdate("CREATE TABLE  T1 (c1 VARCHAR(20))");
+        STM.close();
     }
 }
