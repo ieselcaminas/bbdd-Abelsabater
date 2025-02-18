@@ -8,7 +8,7 @@ public class GestionUsuarios {
         while (opcion !=-1){
             System.out.println("1 -Loguearse");
             System.out.println("2 -Crear usuarios");
-            System.out.println("3 -Salir");
+            System.out.println("-1 -Salir");
             opcion=sc.nextInt();
             if(opcion== 1){
                 boolean logeado=existeUsuario();
