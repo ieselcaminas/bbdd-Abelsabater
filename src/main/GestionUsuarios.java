@@ -8,7 +8,6 @@ public class GestionUsuarios {
         while (opcion !=-1){
             System.out.println("1 -Loguearse");
             System.out.println("2 -Crear usuarios");
-            System.out.println("3 -Comentarios");
             opcion=sc.nextInt();
             if(opcion== 1){
                 boolean logeado=existeUsuario();
@@ -33,18 +32,21 @@ public class GestionUsuarios {
         ResultSet rs = st.executeQuery();
         return rs.next();
     }
-    public static void crearUsuario() throws SQLException {
+    public static String crearUsuario() throws SQLException {
         java.sql.Connection con = Main.connection;
         Scanner sc=new Scanner(System.in);
         System.out.println("Ingrese su usuario");
         String usuari=sc.nextLine();
+        System.out.println("Ingrese su apellidos");
+        String apellidos=sc.nextLine();
         System.out.println("Ingrese su password");
         String passw=sc.nextLine();
-        Statement st = con.createStatement();
-        String sql="INSERT INTO usuarios(nombre, contrasenya) VALUES (?, ?)";
+        String sql="INSERT INTO usuarios(nombre,apellidos,contrasenya) VALUES (?, ?, ?)";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, usuari);
-        pst.setString(2, passw);
+        pst.setString(2, apellidos);
+        pst.setString(3, passw);
         pst.executeUpdate();
+        return usuari;
     }
 }
