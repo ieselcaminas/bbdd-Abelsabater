@@ -3,7 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**public class ConectarSQL {
+public class ConectarSQL {
 
     static java.sql.Connection connection;
 
@@ -50,4 +50,4 @@ import java.sql.Statement;
         st.executeUpdate("DELETE FROM usuarios");
 
     }
-}**/
+}
