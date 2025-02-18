@@ -18,6 +18,7 @@ public class Main {
     }
     public static void main(String[] args) throws SQLException {
         Scanner sc=new Scanner(System.in);
+        Main.connection = getConnection();
         int opcion=0;
         while (opcion !=-1){
             System.out.println("1 -Usuarios");
