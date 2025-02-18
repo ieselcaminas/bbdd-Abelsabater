@@ -1,4 +1,3 @@
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -27,6 +26,10 @@ public class Main {
             opcion=sc.nextInt();
             if(opcion== 1){
                 GestionUsuarios.gestionMenu();
+            }else if(opcion== 2){
+
+            }else {
+
             }
         }
     }
