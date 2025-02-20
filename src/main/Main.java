@@ -28,7 +28,8 @@ public class Main {
             }
             System.out.print("1-Usuarios ");
             System.out.print("2-Posts ");
-            System.out.println("3-Comentarios ");
+            System.out.print("3-Comentarios ");
+            System.out.println("-1-Salir");
             opcion=sc.nextInt();
             if(opcion== 1){
                 GestionUsuarios.gestionMenu();
