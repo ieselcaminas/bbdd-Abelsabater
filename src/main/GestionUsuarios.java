@@ -38,15 +38,12 @@ public class GestionUsuarios {
         Scanner sc=new Scanner(System.in);
         System.out.println("Ingrese su usuario");
         String usuari=sc.nextLine();
-        System.out.println("Ingrese su apellidos");
-        String apellidos=sc.nextLine();
         System.out.println("Ingrese su password");
         String passw=sc.nextLine();
-        String sql="INSERT INTO usuarios(nombre,apellidos,contrasenya) VALUES (?, ?, ?)";
+        String sql="INSERT INTO usuarios(nombre,contrasenya) VALUES (?, ?)";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, usuari);
-        pst.setString(2, apellidos);
-        pst.setString(3, passw);
+        pst.setString(2, passw);
         pst.executeUpdate();
         return usuari;
     }
