@@ -35,5 +35,4 @@ public class GestionPost {
         st.setInt(3,Main.id_usuario);
         st.executeUpdate();
     }
-
 }
