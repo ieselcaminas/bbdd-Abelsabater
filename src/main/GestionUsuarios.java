@@ -56,6 +56,8 @@ public class GestionUsuarios {
         pst.setString(2, apellidos);
         pst.setString(3, passw);
         pst.executeUpdate();
+        ResultSet rs = pst.executeQuery();
+        Main.id_usuario=rs.getInt(1);
         Main.usuarioini =usuari;
         return usuari;
     }
