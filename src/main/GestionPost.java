@@ -8,7 +8,7 @@ public class GestionPost {
         Scanner sc = new Scanner(System.in);
         String usuario;
         int opcion = 0;
-        while (opcion!=2) {
+        while (opcion!=-1) {
             System.out.print("1-Crear post ");
             System.out.println("-1-Salir");
             opcion = sc.nextInt();
@@ -25,8 +25,6 @@ public class GestionPost {
         java.sql.Connection con = Main.connection;
         Scanner sc = new Scanner(System.in);
         String texto;
-        int likes;
-        int id_usuario;
         java.sql.Date fecha = new java.sql.Date(new Date().getTime());
         System.out.println("Que vols publicar?");
         texto = sc.nextLine();

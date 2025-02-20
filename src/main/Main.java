@@ -22,7 +22,6 @@ public class Main {
         Main.connection = getConnection();
         int opcion=0;
         while (opcion !=-1){
-
             if(!usuarioini.isEmpty()){
                 System.out.println("Bienvenido");
                 System.out.println("\t"+usuarioini);
@@ -36,7 +35,7 @@ public class Main {
                 GestionUsuarios.gestionMenu();
             }else if(opcion== 2){
                 GestionPost.gestionMenu();
-            }else {
+            }else if(opcion== 3){
 
             }
         }
