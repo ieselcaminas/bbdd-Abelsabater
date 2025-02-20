@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
@@ -16,6 +17,8 @@ public class GestionPost {
         }
     }
     public static void nuevopost() throws SQLException {
+        java.sql.Connection con = Main.connection;
+
         Scanner sc = new Scanner(System.in);
         String texto;
         int likes;
@@ -23,6 +26,11 @@ public class GestionPost {
         java.sql.Date fecha = new java.sql.Date(new Date().getTime());
         System.out.println("Que vols publicar?");
         texto = sc.nextLine();
+        PreparedStatement st=con.prepareStatement("INSERT INTO posts(texto,likes,fecha,id_usuario) VALUES (?,0,?,?)");
+        st.setString(1, texto);
+        st.setDate(2,fecha);
+        st.setInt(3,Main.id_usuario);
+        st.executeUpdate();
     }
 
 }

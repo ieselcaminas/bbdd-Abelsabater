@@ -34,6 +34,7 @@ public class GestionUsuarios {
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
         if(rs.next()){
+            Main.id_usuario=rs.getInt(1);
             usuario=rs.getString(2);
         }else{
             usuario="";
