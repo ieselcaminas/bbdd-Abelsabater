@@ -8,20 +8,21 @@ public class GestionPost {
         Scanner sc = new Scanner(System.in);
         String usuario;
         int opcion = 0;
-        while (opcion != -1) {
+        while (opcion!=2) {
             System.out.print("1-Crear post ");
             System.out.println("-1-Salir");
-            if (sc.nextInt() == 1) {
+            opcion = sc.nextInt();
+            if (opcion == 1) {
                 nuevopost();
             }
         }
     }
     public static void nuevopost() throws SQLException {
-        java.sql.Connection con = Main.connection;
         if(Main.id_usuario==-1){
-            System.out.println("Tens que iniciar sesió si vols publicar una historia");
-            GestionPost.gestionMenu();
+            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
+            GestionUsuarios.gestionMenu();
         }
+        java.sql.Connection con = Main.connection;
         Scanner sc = new Scanner(System.in);
         String texto;
         int likes;
