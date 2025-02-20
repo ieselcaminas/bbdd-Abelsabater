@@ -18,7 +18,10 @@ public class GestionPost {
     }
     public static void nuevopost() throws SQLException {
         java.sql.Connection con = Main.connection;
-
+        if(Main.id_usuario==-1){
+            System.out.println("Tens que iniciar sesió si vols publicar una historia");
+            GestionPost.gestionMenu();
+        }
         Scanner sc = new Scanner(System.in);
         String texto;
         int likes;
