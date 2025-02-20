@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     static java.sql.Connection connection;
-    static String usuario="";
+    static String usuarioini ="";
     public static java.sql.Connection getConnection(){
         String host = "jdbc:sqlite:src/main/resources/network.sqlite";
         if (connection == null) {
@@ -22,9 +22,9 @@ public class Main {
         int opcion=0;
         while (opcion !=-1){
 
-            if(!usuario.isEmpty()){
+            if(!usuarioini.isEmpty()){
                 System.out.println("Bienvenido");
-                System.out.println(usuario);
+                System.out.println(usuarioini);
             }
             System.out.print("1 -Usuarios ");
             System.out.print("2 -Posts ");

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class GestionUsuarios {
     public static void gestionMenu() throws SQLException {
         Scanner sc=new Scanner(System.in);
+        String usuario;
         int opcion=0;
         while (opcion !=-1){
             System.out.print("1 -Loguearse");
@@ -11,8 +12,9 @@ public class GestionUsuarios {
             System.out.println("-1 -Salir");
             opcion=sc.nextInt();
             if(opcion== 1){
-                if(!existeUsuario().isEmpty()){
-                    Main.usuario=existeUsuario();
+                usuario = existeUsuario();
+                if(!usuario.isEmpty()){
+                    Main.usuarioini =usuario;
                     break;
                 }
             }else if(opcion==2){
@@ -53,7 +55,7 @@ public class GestionUsuarios {
         pst.setString(2, apellidos);
         pst.setString(3, passw);
         pst.executeUpdate();
-        Main.usuario=usuari;
+        Main.usuarioini =usuari;
         return usuari;
     }
 }
