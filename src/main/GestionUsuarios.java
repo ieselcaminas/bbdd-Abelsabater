@@ -6,13 +6,13 @@ public class GestionUsuarios {
         Scanner sc=new Scanner(System.in);
         int opcion=0;
         while (opcion !=-1){
-            System.out.println("1 -Loguearse");
-            System.out.println("2 -Crear usuarios");
+            System.out.print("1 -Loguearse");
+            System.out.print("2 -Crear usuarios");
             System.out.println("-1 -Salir");
             opcion=sc.nextInt();
             if(opcion== 1){
-                boolean logeado=existeUsuario();
-                if(logeado){
+               Main.usuario=existeUsuario();
+                if(!existeUsuario().isEmpty()){
                     break;
                 }
             }else if(opcion==2){
@@ -20,7 +20,7 @@ public class GestionUsuarios {
             }
         }
     }
-    public static boolean existeUsuario() throws SQLException {
+    public static String existeUsuario() throws SQLException {
         java.sql.Connection con = Main.connection;
         Scanner sc=new Scanner(System.in);
         System.out.println("Ingrese su usuario");
@@ -31,7 +31,13 @@ public class GestionUsuarios {
         st.setString(1, usuario);
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
-        return rs.next();
+
+        if(rs.next()){
+            usuario=rs.getString(2);
+        }else{
+            usuario="";
+        }
+        return usuario;
     }
     public static String crearUsuario() throws SQLException {
         java.sql.Connection con = Main.connection;
@@ -48,6 +54,7 @@ public class GestionUsuarios {
         pst.setString(2, apellidos);
         pst.setString(3, passw);
         pst.executeUpdate();
+        Main.usuario=usuari;
         return usuari;
     }
 }
