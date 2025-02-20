@@ -11,8 +11,8 @@ public class GestionUsuarios {
             System.out.println("-1 -Salir");
             opcion=sc.nextInt();
             if(opcion== 1){
-               Main.usuario=existeUsuario();
                 if(!existeUsuario().isEmpty()){
+                    Main.usuario=existeUsuario();
                     break;
                 }
             }else if(opcion==2){
@@ -31,7 +31,6 @@ public class GestionUsuarios {
         st.setString(1, usuario);
         st.setString(2, password);
         ResultSet rs = st.executeQuery();
-
         if(rs.next()){
             usuario=rs.getString(2);
         }else{
