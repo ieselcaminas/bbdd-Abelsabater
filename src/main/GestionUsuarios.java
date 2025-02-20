@@ -7,9 +7,9 @@ public class GestionUsuarios {
         String usuario;
         int opcion=0;
         while (opcion !=-1){
-            System.out.print("1 -Loguearse");
-            System.out.print("2 -Crear usuarios");
-            System.out.println("-1 -Salir");
+            System.out.print("1-Loguearse ");
+            System.out.print("2-Crear usuarios ");
+            System.out.println("-1-Salir ");
             opcion=sc.nextInt();
             if(opcion== 1){
                 usuario = existeUsuario();

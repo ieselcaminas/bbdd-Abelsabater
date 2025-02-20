@@ -24,11 +24,11 @@ public class Main {
 
             if(!usuarioini.isEmpty()){
                 System.out.println("Bienvenido");
-                System.out.println(usuarioini);
+                System.out.println("\t"+usuarioini);
             }
-            System.out.print("1 -Usuarios ");
-            System.out.print("2 -Posts ");
-            System.out.println("3 -Comentarios ");
+            System.out.print("1-Usuarios ");
+            System.out.print("2-Posts ");
+            System.out.println("3-Comentarios ");
             opcion=sc.nextInt();
             if(opcion== 1){
                 GestionUsuarios.gestionMenu();
