@@ -17,17 +17,25 @@ public class GestionPost {
             opcion = sc.nextInt();
             if (opcion == 1) {
                 nuevopost();
+            }if (opcion == 2) {
+                listarposts();
             }
         }
     }
 
     public static void listarposts() throws SQLException {
-        Scanner sc = new Scanner(System.in);
+        if(Main.id_usuario==-1){
+            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
+            GestionUsuarios.gestionMenu();
+        }
         Connection con=Main.connection;
-        PreparedStatement ps=con.prepareStatement("SELECT posts.texto,posts.likes, usuarios.nombre from posts inner join usuario on usuarios.id = posts.usuario_id where posts.texto=?, posts.likes=? and usuarios.nombre=?");
+        String usuario=Main.usuarioini;
+        PreparedStatement ps=con.prepareStatement("SELECT posts.texto, posts.likes, usuarios.nombre FROM posts INNER JOIN usuarios ON usuarios.id = posts.usuario_id");
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-
+            if(rs.getString(3).equals(usuario)) {
+                System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
+            }
         }
     }
     public static void nuevopost() throws SQLException {
