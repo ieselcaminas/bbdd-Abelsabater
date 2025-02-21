@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
-
 public class GestionPost {
     public static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
@@ -22,7 +21,6 @@ public class GestionPost {
             }
         }
     }
-
     public static void listarposts() throws SQLException {
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
