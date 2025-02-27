@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
@@ -42,7 +43,6 @@ public class GestionComentarios {
     }
     public static void mostrarcomentario() throws SQLException {
         Connection m= Main.connection;
-        Scanner sc = new Scanner(System.in);
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
@@ -50,6 +50,12 @@ public class GestionComentarios {
         if(Main.id_post==-1){
             System.out.println("No hi ha ningun post d'aquest usuario");
         }else{
+            PreparedStatement st=m.prepareStatement("SELECT comentarios.texto,comentarios.fecha,usuarios.nombre,posts.texto from comentarios inner join usuarios on usuarios.id=comentarios.id_usuario; inner join posts on posts.id=comentarios.id_post");
+            ResultSet rs=st.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getString(1)+" "+rs.getDate(2)+" "+rs.getInt(3)+" "+rs.getInt(4));
+            }
+
         }
     }
 }
