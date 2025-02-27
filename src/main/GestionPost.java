@@ -50,5 +50,7 @@ public class GestionPost {
         st.setDate(2, fecha);
         st.setInt(3,Main.id_usuario);
         st.executeUpdate();
+        ResultSet rs = st.executeQuery();
+        Main.id_post=rs.getInt(1);
     }
 }
