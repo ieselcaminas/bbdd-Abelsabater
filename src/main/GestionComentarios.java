@@ -17,7 +17,7 @@ public class GestionComentarios {
             if(opcion==1){
                 crearcomentario();
             }else if(opcion==2){
-
+                mostrarcomentario();
             }
         }
     }
@@ -28,9 +28,6 @@ public class GestionComentarios {
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
         }
-        if(Main.id_post==-1){
-            System.out.println("No hi ha ningun post d'aquest usuario");
-        }else{
             System.out.println("Posa el text que vols");
             String texto=sc.nextLine();
             java.sql.Date fecha = new java.sql.Date(new Date().getTime());
@@ -39,7 +36,6 @@ public class GestionComentarios {
             st.setDate(2,fecha);
             st.setInt(3,Main.id_usuario);
             st.setInt(4,Main.id_post);
-        }
     }
     public static void mostrarcomentario() throws SQLException {
         Connection m= Main.connection;
@@ -55,7 +51,6 @@ public class GestionComentarios {
             while(rs.next()){
                 System.out.println(rs.getString(1)+" "+rs.getDate(2)+" "+rs.getInt(3)+" "+rs.getInt(4));
             }
-
         }
     }
 }
