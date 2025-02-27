@@ -1,13 +1,9 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Date;
 import java.util.Scanner;
 public class GestionPost {
     public static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
-        String usuario;
         int opcion = 0;
         while (opcion!=-1) {
             System.out.print("1-Crear post ");
@@ -21,6 +17,7 @@ public class GestionPost {
             }
         }
     }
+
     public static void listarposts() throws SQLException {
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
@@ -28,7 +25,7 @@ public class GestionPost {
         }
         Connection con=Main.connection;
         String usuario=Main.usuarioini;
-        PreparedStatement ps=con.prepareStatement("SELECT posts.texto, posts.likes, usuarios.nombre FROM posts INNER JOIN usuarios ON usuarios.id = posts.usuario_id");
+        PreparedStatement ps=con.prepareStatement("SELECT posts.texto, posts.likes, usuarios.nombre FROM posts INNER JOIN usuarios ON usuarios.id = posts.id_usuario");
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
             if(rs.getString(3).equals(usuario)) {
@@ -36,6 +33,7 @@ public class GestionPost {
             }
         }
     }
+
     public static void nuevopost() throws SQLException {
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
