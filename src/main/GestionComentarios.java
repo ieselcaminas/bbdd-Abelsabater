@@ -40,4 +40,16 @@ public class GestionComentarios {
             st.setInt(4,Main.id_post);
         }
     }
+    public static void mostrarcomentario() throws SQLException {
+        Connection m= Main.connection;
+        Scanner sc = new Scanner(System.in);
+        if(Main.id_usuario==-1){
+            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
+            GestionUsuarios.gestionMenu();
+        }
+        if(Main.id_post==-1){
+            System.out.println("No hi ha ningun post d'aquest usuario");
+        }else{
+        }
+    }
 }
