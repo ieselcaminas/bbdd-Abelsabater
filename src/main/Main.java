@@ -5,6 +5,7 @@ public class Main {
     static java.sql.Connection connection;
     static String usuarioini ="";
     static int id_usuario=-1;
+    static int id_post=-1;
     public static java.sql.Connection getConnection(){
         String host = "jdbc:sqlite:src/main/resources/network.sqlite";
         if (connection == null) {

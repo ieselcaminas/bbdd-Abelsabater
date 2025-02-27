@@ -1,5 +1,7 @@
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Scanner;
 
 public class GestionComentarios {
@@ -18,13 +20,20 @@ public class GestionComentarios {
             }
         }
     }
-
     public static void crearcomentario() throws SQLException {
        Connection m= Main.connection;
+       Scanner sc = new Scanner(System.in);
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
         }
+        System.out.println("Posa el text que vols");
+        String texto=sc.nextLine();
+        java.sql.Date fecha = new java.sql.Date(new Date().getTime());
+        PreparedStatement st=m.prepareStatement("insert into comentarios(texto,fecha,id_usuario,id_post) values(?,?,?,?)");
+        st.setString(1,texto);
+        st.setDate(2,fecha);
+        st.setInt(3,Main.id_usuario);
 
     }
 }
