@@ -51,9 +51,6 @@ public class GestionPost {
         }
     }
 
-
-
-
     public static void nuevopost() throws SQLException {
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
