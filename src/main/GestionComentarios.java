@@ -44,7 +44,8 @@ public class GestionComentarios {
     }
     public static void printComentarios(int idpost) throws SQLException {
         Connection con=Main.connection;
-        PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario");
+        PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join posts as p on c.id_post=p.id WHERE p.id = ?");
+        st.setInt(1,idpost);
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             System.out.println("\t\t\t" + rs.getString(2) + " - " + rs.getDate(3 ) + " - " + rs.getString(4));
