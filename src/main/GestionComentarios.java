@@ -42,7 +42,6 @@ public class GestionComentarios {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
-
     public static void printComentarios(int idpost) throws SQLException {
         Connection con=Main.connection;
         PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join post as p on c.id_post=p.id");
