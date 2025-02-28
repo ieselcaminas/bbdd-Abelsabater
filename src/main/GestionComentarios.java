@@ -11,7 +11,6 @@ public class GestionComentarios {
         int opcion=0;
         while (opcion!=-1){
             System.out.print("1-Crear comentario");
-            System.out.print(" 2-Ver comentarios");
             System.out.println(" -1-Salir");
             opcion=sc.nextInt();
             if(opcion==1){
@@ -26,6 +25,7 @@ public class GestionComentarios {
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
         }
+        System.out.println("Selecciona quin post vols comentar");
             int idpost=getPost();
             System.out.println("Posa el text que vols");
             String texto=sc.nextLine();
@@ -44,7 +44,7 @@ public class GestionComentarios {
     }
     public static void printComentarios(int idpost) throws SQLException {
         Connection con=Main.connection;
-        PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join post as p on c.id_post=p.id");
+        PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario");
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             System.out.println("\t\t\t" + rs.getString(2) + " - " + rs.getDate(3 ) + " - " + rs.getString(4));
