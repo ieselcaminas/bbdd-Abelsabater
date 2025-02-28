@@ -47,6 +47,10 @@ public class GestionPosts {
     }
 
     public static void listarTodosMisPosts() throws SQLException {
+        if(Main.id_usuario == -1) {
+            GestionUsuarios.gestionMenu();
+            return;
+        }
         Connection con = Main.connection;
         PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p " +
                 "INNER JOIN usuarios as u ON p.id_usuario = u.id WHERE u.id = ?");
