@@ -42,7 +42,7 @@ public class GestionPost {
         ResultSet rs = st.executeQuery();
         while (rs.next()){
             printPost(rs);
-            GestionComentarios.printComentarios();
+            GestionComentarios.printComentarios(rs.getInt(1));
         }
     }
 
