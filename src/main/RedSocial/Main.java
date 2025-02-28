@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    static java.sql.Connection connection;
+    public static java.sql.Connection connection;
     static String usuarioini ="";
     static int id_usuario=-1;
     public static java.sql.Connection getConnection(){
