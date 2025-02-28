@@ -38,12 +38,12 @@ public class GestionComentarios {
             st.executeUpdate();
     }
     public static int getPost() throws SQLException {
-        GestionPost.listarposts();
+        GestionPost.listarTodosLosPosts();
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
 
-    public void printComentarios() throws SQLException {
+    public static void printComentarios( int idpost) throws SQLException {
         Connection con=Main.connection;
         PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join post as p on c.id_post=p.id");
         ResultSet rs=st.executeQuery();

@@ -1,71 +1,85 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
 public class GestionPost {
     public static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
-        while (opcion!=-1) {
-            System.out.print("1-Crear post ");
-            System.out.print("2-Lista de posts tuyos");
-            System.out.println("3-Lista de posts ");
-            System.out.println("-1-Salir");
+        while (opcion != -1){
+            System.out.print(" 1 - Nuevo Post | ");
+            System.out.print(" 2 - Todos los posts | ");
+            System.out.print(" 3 - Todos mis posts | ");
+            System.out.println("-1 para Salir");
+
             opcion = sc.nextInt();
-            if (opcion == 1) {
-                nuevopost();
-            }if (opcion == 2) {
-                listarpostsusuario();
+            if (opcion == 1){
+                crearpost();
+            }else if(opcion == 2){
+                listarTodosLosPostsConComentarios();
+            }else if(opcion == 3){
+                listarTodosMisPosts();
             }
         }
+
     }
-
-    public static void listarposts() throws SQLException {
-        if(Main.id_usuario==-1){
-            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
-            GestionUsuarios.gestionMenu();
-        }
+    public static void listarTodosLosPosts() throws SQLException {
         Connection con = Main.connection;
-
-        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre" + " FROM posts as p " + " INNER JOIN usuarios as u ON p.id_usuario = u.id");
-
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre" +
+                " FROM posts as p " +
+                " INNER JOIN usuarios as u ON p.id_usuario = u.id");
         ResultSet rs = st.executeQuery();
         while (rs.next()){
-            System.out.println(rs.getInt(1) + " " + rs.getString(2) + " likes:" + rs.getInt(3) + " " + rs.getDate(4) + " " + rs.getString(5));
-
+            printPost(rs);
+        }
+    }
+    public static void listarTodosLosPostsConComentarios() throws SQLException {
+        Connection con = Main.connection;
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p " +
+                "INNER JOIN usuarios as u ON p.id_usuario = u.id");
+        ResultSet rs = st.executeQuery();
+        while (rs.next()){
+            printPost(rs);
+            GestionComentarios.printComentarios();
         }
     }
 
-    public static void listarpostsusuario() throws SQLException {
-        if(Main.id_usuario==-1){
-            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
-            GestionUsuarios.gestionMenu();
-        }
-        Connection con=Main.connection;
-        String usuario=Main.usuarioini;
-        PreparedStatement ps=con.prepareStatement("SELECT posts.texto, posts.likes, usuarios.nombre FROM posts INNER JOIN usuarios ON usuarios.id = posts.id_usuario");
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            if(rs.getString(3).equals(usuario)) {
-                System.out.println(rs.getString(1) + ", " + rs.getString(2) + ", " + rs.getString(3));
-            }
+    public static void listarTodosMisPosts() throws SQLException {
+        Connection con = Main.connection;
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p " +
+                "INNER JOIN usuarios as u ON p.id_usuario = u.id WHERE u.id = ?");
+        st.setInt(1, Main.id_usuario);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()){
+            printPost(rs);
+            GestionComentarios.printComentarios(rs.getInt(1));
+
         }
     }
+    public static void printPost(ResultSet rs) throws SQLException {
+        System.out.println(rs.getInt(1) + " " +
+                rs.getString(2) + " likes:" +
+                rs.getInt(3) + " " + rs.getDate(4) +
+                " " + rs.getString(5));
 
-    public static void nuevopost() throws SQLException {
-        if(Main.id_usuario==-1){
-            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
+    }
+    public static void crearpost() throws SQLException {
+        if(Main.id_usuario == -1) {
             GestionUsuarios.gestionMenu();
+            return;
         }
         Connection con = Main.connection;
         Scanner sc = new Scanner(System.in);
-        String texto;
+        System.out.println("Introduce el texto");
+        String texto = sc.nextLine();
         java.sql.Date fecha = new java.sql.Date(new Date().getTime());
-        System.out.println("Que vols publicar?");
-        texto = sc.nextLine();
-        PreparedStatement st=con.prepareStatement("INSERT INTO posts(texto,likes,fecha,id_usuario) VALUES (?,0,?,?)");
+        PreparedStatement st = con.prepareStatement("INSERT INTO posts (texto, likes, fecha, id_usuario) VALUES (? , ?, ?, ?)");
         st.setString(1, texto);
-        st.setDate(2, fecha);
-        st.setInt(3,Main.id_usuario);
+        st.setInt(2, 0);
+        st.setDate(3, fecha);
+        st.setInt(4, Main.id_usuario);
         st.executeUpdate();
     }
 }
