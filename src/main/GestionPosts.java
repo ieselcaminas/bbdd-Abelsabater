@@ -27,9 +27,7 @@ public class GestionPosts {
     }
     public static void listarTodosLosPosts() throws SQLException {
         Connection con = Main.connection;
-        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre" +
-                " FROM posts as p " +
-                " INNER JOIN usuarios as u ON p.id_usuario = u.id");
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p INNER JOIN usuarios as u ON p.id_usuario = u.id");
         ResultSet rs = st.executeQuery();
         while (rs.next()){
             printPost(rs);
@@ -37,8 +35,7 @@ public class GestionPosts {
     }
     public static void listarTodosLosPostsConComentarios() throws SQLException {
         Connection con = Main.connection;
-        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p " +
-                "INNER JOIN usuarios as u ON p.id_usuario = u.id");
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p INNER JOIN usuarios as u ON p.id_usuario = u.id");
         ResultSet rs = st.executeQuery();
         while (rs.next()){
             printPost(rs);
@@ -52,8 +49,7 @@ public class GestionPosts {
             return;
         }
         Connection con = Main.connection;
-        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p " +
-                "INNER JOIN usuarios as u ON p.id_usuario = u.id WHERE u.id = ?");
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre FROM posts as p INNER JOIN usuarios as u ON p.id_usuario = u.id WHERE u.id = ?");
         st.setInt(1, Main.id_usuario);
         ResultSet rs = st.executeQuery();
         while (rs.next()){
