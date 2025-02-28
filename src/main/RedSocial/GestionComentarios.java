@@ -1,3 +1,5 @@
+package RedSocial;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +35,7 @@ public class GestionComentarios {
             PreparedStatement st=m.prepareStatement("insert into comentarios(texto,fecha,id_usuario,id_post) values(?,?,?,?)");
             st.setString(1,texto);
             st.setDate(2,fecha);
-            st.setInt(3,Main.id_usuario);
+            st.setInt(3, Main.id_usuario);
             st.setInt(4,idpost);
             st.executeUpdate();
     }
@@ -43,7 +45,7 @@ public class GestionComentarios {
         return sc.nextInt();
     }
     public static void printComentarios(int idpost) throws SQLException {
-        Connection con=Main.connection;
+        Connection con= Main.connection;
         PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join posts as p on c.id_post=p.id WHERE p.id = ?");
         st.setInt(1,idpost);
         ResultSet rs=st.executeQuery();
