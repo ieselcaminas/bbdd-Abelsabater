@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
-public class GestionPost {
+public class GestionPosts {
     public static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;

@@ -34,7 +34,7 @@ public class Main {
             if(opcion== 1){
                 GestionUsuarios.gestionMenu();
             }else if(opcion== 2){
-                GestionPost.gestionMenu();
+                GestionPosts.gestionMenu();
             }else if(opcion== 3){
                 GestionComentarios.gestionmenu();
             }

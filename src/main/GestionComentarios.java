@@ -38,7 +38,7 @@ public class GestionComentarios {
             st.executeUpdate();
     }
     public static int getPost() throws SQLException {
-        GestionPost.listarTodosLosPosts();
+        GestionPosts.listarTodosLosPosts();
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
     }
