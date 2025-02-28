@@ -7,18 +7,35 @@ public class GestionPost {
         int opcion = 0;
         while (opcion!=-1) {
             System.out.print("1-Crear post ");
-            System.out.print("2-Lista de posts ");
+            System.out.print("2-Lista de posts tuyos");
+            System.out.println("3-Lista de posts ");
             System.out.println("-1-Salir");
             opcion = sc.nextInt();
             if (opcion == 1) {
                 nuevopost();
             }if (opcion == 2) {
-                listarposts();
+                listarpostsusuario();
             }
         }
     }
 
     public static void listarposts() throws SQLException {
+        if(Main.id_usuario==-1){
+            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
+            GestionUsuarios.gestionMenu();
+        }
+        Connection con = Main.connection;
+
+        PreparedStatement st = con.prepareStatement("SELECT p.id, p.texto, p.likes, p.fecha, u.nombre" + " FROM posts as p " + " INNER JOIN usuarios as u ON p.id_usuario = u.id");
+
+        ResultSet rs = st.executeQuery();
+        while (rs.next()){
+            System.out.println(rs.getInt(1) + " " + rs.getString(2) + " likes:" + rs.getInt(3) + " " + rs.getDate(4) + " " + rs.getString(5));
+
+        }
+    }
+
+    public static void listarpostsusuario() throws SQLException {
         if(Main.id_usuario==-1){
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
@@ -33,6 +50,9 @@ public class GestionPost {
             }
         }
     }
+
+
+
 
     public static void nuevopost() throws SQLException {
         if(Main.id_usuario==-1){
@@ -50,7 +70,5 @@ public class GestionPost {
         st.setDate(2, fecha);
         st.setInt(3,Main.id_usuario);
         st.executeUpdate();
-        ResultSet rs = st.executeQuery();
-        Main.id_post=rs.getInt(1);
     }
 }

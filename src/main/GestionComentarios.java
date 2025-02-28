@@ -16,8 +16,6 @@ public class GestionComentarios {
             opcion=sc.nextInt();
             if(opcion==1){
                 crearcomentario();
-            }else if(opcion==2){
-                mostrarcomentario();
             }
         }
     }
@@ -28,6 +26,7 @@ public class GestionComentarios {
             System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
             GestionUsuarios.gestionMenu();
         }
+            int idpost=getPost();
             System.out.println("Posa el text que vols");
             String texto=sc.nextLine();
             java.sql.Date fecha = new java.sql.Date(new Date().getTime());
@@ -35,22 +34,21 @@ public class GestionComentarios {
             st.setString(1,texto);
             st.setDate(2,fecha);
             st.setInt(3,Main.id_usuario);
-            st.setInt(4,Main.id_post);
+            st.setInt(4,idpost);
+            st.executeUpdate();
     }
-    public static void mostrarcomentario() throws SQLException {
-        Connection m= Main.connection;
-        if(Main.id_usuario==-1){
-            System.out.println("Tens que iniciar sesió si vols vore o publicar una historia");
-            GestionUsuarios.gestionMenu();
-        }
-        if(Main.id_post==-1){
-            System.out.println("No hi ha ningun post d'aquest usuario");
-        }else{
-            PreparedStatement st=m.prepareStatement("SELECT comentarios.texto,comentarios.fecha,usuarios.nombre,posts.texto from comentarios inner join usuarios on usuarios.id=comentarios.id_usuario; inner join posts on posts.id=comentarios.id_post");
-            ResultSet rs=st.executeQuery();
-            while(rs.next()){
-                System.out.println(rs.getString(1)+" "+rs.getDate(2)+" "+rs.getInt(3)+" "+rs.getInt(4));
-            }
+    public static int getPost() throws SQLException {
+        GestionPost.listarposts();
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+    }
+
+    public void printComentarios() throws SQLException {
+        Connection con=Main.connection;
+        PreparedStatement st=con.prepareStatement("SELECT c.id,c.texto,c.fecha,u.nombre from comentarios as c inner join usuarios as u on u.id=c.id_usuario inner join post as p on c.id_post=p.id");
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            System.out.println("\t\t\t" + rs.getString(2) + " - " + rs.getDate(3 ) + " - " + rs.getString(4));
         }
     }
 }
