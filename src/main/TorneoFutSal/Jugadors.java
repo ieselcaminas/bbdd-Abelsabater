@@ -30,9 +30,11 @@ public class Jugadors {
         String nombre;
         System.out.println("Ingrese el nombre del jugador");
         nombre=sc.nextLine();
-        String sql="Select * from jugadores where nombre=?";
+        String sql="Select * from jugadors where nombre=?";
         PreparedStatement pst=con.prepareStatement(sql);
         pst.setString(1,nombre);
+        ResultSet rs=pst.executeQuery();
+        System.out.println();
     }
 
     public static void insertarJugadores() throws SQLException {
@@ -47,7 +49,7 @@ public class Jugadors {
         apellidos=sc.nextLine();
         System.out.println("Posa la posicio del jugador ");
         posicio=sc.nextLine();
-        String sql="INSERT INTO jugadores(nombre,apellidos,posicion,goles,asistencias) VALUES(?,?,?,0,0)";
+        String sql="INSERT INTO jugadors(nombre,apellidos,posicion,goles,asistencias) VALUES(?,?,?,0,0)";
         PreparedStatement pst=con.prepareStatement(sql);
         pst.setString(1,nombre);
         pst.setString(2,apellidos);
@@ -65,7 +67,7 @@ public class Jugadors {
         estadistica=sc.nextLine();
         if(estadistica.toUpperCase().equals("GOLES")){
             int num;
-            String sql="UPDATE jugadores SET goles=? WHERE nombre=?";
+            String sql="UPDATE jugadors SET goles=? WHERE nombre=?";
             PreparedStatement pst=con.prepareStatement(sql);
             System.out.println("Quants li vols posar");
             num=sc.nextInt();
@@ -73,7 +75,7 @@ public class Jugadors {
             pst.setString(2,nombre);
         }else if(estadistica.toUpperCase().equals("ASISTENCIAS")){
             int num;
-            String sql="UPDATE jugadores SET asistencias=? WHERE nombre=?";
+            String sql="UPDATE jugadors SET asistencias=? WHERE nombre=?";
             PreparedStatement pst=con.prepareStatement(sql);
             System.out.println("Quants li vols posar");
             num=sc.nextInt();
