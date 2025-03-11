@@ -27,8 +27,8 @@ public class Main {
         int opcion=0;
         while (opcion!=-1){
             System.out.println("Que vols vore?");
-            System.out.print("1-Equipos ");
-            System.out.print("2-Jugadors ");
+            System.out.print("1-Jugadors ");
+            System.out.print("2-Equipos ");
             System.out.println("3-Fase de grupos");
             opcion=sc.nextInt();
             if(opcion== 1){
@@ -36,7 +36,7 @@ public class Main {
             }else if(opcion== 2){
                 Equipos.gestionarEquipos();
             }else if(opcion== 3){
-
+                Grupos.gestionarGrupos();
             }
         }
     }
