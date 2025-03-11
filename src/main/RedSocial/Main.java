@@ -8,7 +8,7 @@ public class Main {
     static String usuarioini ="";
     static int id_usuario=-1;
     public static java.sql.Connection getConnection(){
-        String host = "jdbc:sqlite:src/main/resources/network.sqlite";
+        String host = "jdbc:sqlite:src/main/TorneoFutSal/Torneofutbolsala";
         if (connection == null) {
             try {
                 connection = java.sql.DriverManager.getConnection(host);
