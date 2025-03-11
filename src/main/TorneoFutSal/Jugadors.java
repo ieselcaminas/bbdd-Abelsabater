@@ -52,7 +52,7 @@ public class Jugadors {
         apellidos=sc.nextLine();
         System.out.println("Posa la posicio del jugador ");
         posicio=sc.nextLine();
-        String sql="INSERT INTO jugadores(nombre,apellidos,posicio,goles,asistencias) VALUES(?,?,?,0,0)";
+        String sql="INSERT INTO jugadores(nombre,apellidos,posicion,goles,asistencias) VALUES(?,?,?,0,0)";
         PreparedStatement pst=con.prepareStatement(sql);
         pst.setString(1,nombre);
         pst.setString(2,apellidos);
