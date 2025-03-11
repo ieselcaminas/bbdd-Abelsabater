@@ -1,5 +1,9 @@
 package TorneoFutSal;
 
+import RedSocial.GestionComentarios;
+import RedSocial.GestionPosts;
+import RedSocial.GestionUsuarios;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -26,6 +30,14 @@ public class Main {
             System.out.print("1-Equipos ");
             System.out.print("2-Jugadors ");
             System.out.println("3-Fase de grupos");
+            opcion=sc.nextInt();
+            if(opcion== 1){
+
+            }else if(opcion== 2){
+
+            }else if(opcion== 3){
+
+            }
         }
     }
 }
