@@ -22,7 +22,7 @@ public class Main {
         return connection;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner sc=new Scanner(System.in);
         int opcion=0;
         while (opcion!=-1){
@@ -32,7 +32,7 @@ public class Main {
             System.out.println("3-Fase de grupos");
             opcion=sc.nextInt();
             if(opcion== 1){
-
+                Jugadors.gestionarJugadores();
             }else if(opcion== 2){
 
             }else if(opcion== 3){

@@ -42,7 +42,6 @@ public class Jugadors {
             }
         }
     }
-
     public static void estadistiques() throws SQLException {
         java.sql.Connection con = Main.connection;
         Scanner sc=new Scanner(System.in);
