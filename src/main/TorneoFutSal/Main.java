@@ -34,7 +34,7 @@ public class Main {
             if(opcion== 1){
                 Jugadors.gestionarJugadores();
             }else if(opcion== 2){
-
+                Equipos.gestionarEquipos();
             }else if(opcion== 3){
 
             }
