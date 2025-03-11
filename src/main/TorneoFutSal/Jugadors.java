@@ -34,7 +34,7 @@ public class Jugadors {
         PreparedStatement pst=con.prepareStatement(sql);
         pst.setString(1,nombre);
         ResultSet rs=pst.executeQuery();
-        System.out.println();
+        System.out.println( rs.getString("goles"));
     }
 
     public static void insertarJugadores() throws SQLException {
