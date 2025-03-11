@@ -1,10 +1,5 @@
 package TorneoFutSal;
 
-import RedSocial.GestionComentarios;
-import RedSocial.GestionPosts;
-import RedSocial.GestionUsuarios;
-import RedSocial.Main;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

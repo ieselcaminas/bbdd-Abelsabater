@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     static java.sql.Connection connection;
     public static java.sql.Connection getConnection(){
-        String host = "jdbc:sqlite:src/main/TorneoFutSal/Torneofutbolsala";
+        String host = "jdbc:sqlite:src/main/resources/Torneofutbolsala";
         if (connection == null) {
             try {
                 connection = java.sql.DriverManager.getConnection(host);
